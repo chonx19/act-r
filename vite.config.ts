@@ -5,7 +5,9 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     // Set base path for GitHub Pages
-    const base = process.env.GITHUB_PAGES === 'true' ? '/act-r/' : '/';
+    // Use /act-r/ for GitHub Pages, / for local development
+    const isProduction = mode === 'production' || process.env.GITHUB_PAGES === 'true';
+    const base = isProduction ? '/act-r/' : '/';
     
     return {
       base: base,
