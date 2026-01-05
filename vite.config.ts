@@ -35,7 +35,17 @@ export default defineConfig(({ mode }) => {
           },
         },
       },
-      plugins: [react()],
+      plugins: [
+        react(),
+        // HTML plugin to transform paths
+        {
+          name: 'html-transform',
+          transformIndexHtml(html) {
+            // Vite will automatically transform paths, but we ensure base is applied
+            return html;
+          }
+        }
+      ],
       define: {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
         'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
