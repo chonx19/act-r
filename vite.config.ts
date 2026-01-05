@@ -24,7 +24,11 @@ export default defineConfig(({ mode }) => {
         assetsDir: 'assets',
         sourcemap: false,
         minify: 'terser',
+        emptyOutDir: true,
         rollupOptions: {
+          input: {
+            main: path.resolve(__dirname, 'index.html'),
+          },
           output: {
             manualChunks: {
               'react-vendor': ['react', 'react-dom', 'react-router-dom'],
