@@ -388,7 +388,8 @@ const KanbanBoard = () => {
       const { totalPrice, subtotal, vat, grandTotal } = calculateTotals();
       
       // Load template from RFQ.xlsx
-      const templatePath = '/Excel/RFQ.xlsx';
+      // Use base path from vite config (import.meta.env.BASE_URL)
+      const templatePath = `${import.meta.env.BASE_URL}Excel/RFQ.xlsx`;
       const response = await fetch(templatePath);
       if (!response.ok) {
         throw new Error('Failed to load template');
