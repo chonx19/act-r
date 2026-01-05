@@ -6,8 +6,10 @@ export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     // Set base path for GitHub Pages
     // Use /act-r/ for GitHub Pages, / for local development
-    const isProduction = mode === 'production' || process.env.GITHUB_PAGES === 'true';
+    const isProduction = mode === 'production' || process.env.GITHUB_PAGES === 'true' || process.env.NODE_ENV === 'production';
     const base = isProduction ? '/act-r/' : '/';
+    
+    console.log('Build config:', { mode, isProduction, base, GITHUB_PAGES: process.env.GITHUB_PAGES, NODE_ENV: process.env.NODE_ENV });
     
     return {
       base: base,
